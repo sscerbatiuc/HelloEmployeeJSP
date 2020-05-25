@@ -17,23 +17,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sscerbatiuc
  */
-@WebServlet(urlPatterns="/add")
-public class AddController extends HttpServlet {
+@WebServlet(urlPatterns = "/delete-employee")
+public class DeleteController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("add.jsp");
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        System.out.println("Name: " + name);
-        EmployeeDao dao = new EmployeeDao();
-        dao.add(name, "address", "phone");
+        String id = req.getParameter("id");
+        EmployeeDao empDao = new EmployeeDao();
+        empDao.deleteEmployee(id);
         resp.sendRedirect("view");
     }
-    
     
     
 }
